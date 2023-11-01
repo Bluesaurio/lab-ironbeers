@@ -22,8 +22,17 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 app.get('/beers', (req, res) => {
-  res.render('beers');
+  punkAPI
+  .getBeers()
+  .then((beersFromApi) => {
+    console.log('Beers from the database: ', beersFromApi)
+    res.render('beers');
+  })
+  .catch(error => console.log(error));
+  
+ 
 });
+
 app.get('/random-beer', (req, res) => {
   res.render('random-beer');
 });
