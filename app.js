@@ -25,8 +25,15 @@ app.get('/beers', (req, res) => {
   punkAPI
   .getBeers()
   .then((beersFromApi) => {
-    console.log('Beers from the database: ', beersFromApi)
-    res.render('beers');
+    let listOfBeer = beersFromApi
+    // TODO beersFromApi.forEach((eachBeer)=>{
+    // TODO   console.log(eachBeer.name);
+    //TODO  })
+    //console.log('Beers from the database: ', beersFromApi)
+    res.render('beers', {
+      listOfBeer
+
+    });
   })
   .catch(error => console.log(error));
   
