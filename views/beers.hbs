@@ -3,7 +3,11 @@
     {{#each this.listOfBeer }}
     <div>
 <img src="{{this.image_url}}" alt="beerimg" width="100px">
-<h2>{{this.name}}</h2>
+<h2>
+    <a href="/beers/{{this.name}}">{{this.name}}</a>
+    
+    
+    </h2>
 <h5>{{this.tagline}}</h5>
 <p> {{this.description}}</p>
     </div>
