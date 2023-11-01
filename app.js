@@ -23,24 +23,29 @@ app.get('/', (req, res) => {
 });
 app.get('/beers', (req, res) => {
   punkAPI
-  .getBeers()
-  .then((beersFromApi) => {
-    let listOfBeer = beersFromApi
-    // TODO beersFromApi.forEach((eachBeer)=>{
-    // TODO   console.log(eachBeer.name);
-    //TODO  })
-    //console.log('Beers from the database: ', beersFromApi)
-    res.render('beers', {
-      listOfBeer
-
-    });
-  })
-  .catch(error => console.log(error));
-  
- 
+    .getBeers()
+    .then(beersFromApi => {
+      let listOfBeer = beersFromApi;
+      // TODO beersFromApi.forEach((eachBeer)=>{
+      // TODO   console.log(eachBeer.name);
+      //TODO  })
+      //console.log('Beers from the database: ', beersFromApi)
+      res.render('beers', {
+        listOfBeer
+      });
+    })
+    .catch(error => console.log(error));
 });
 
 app.get('/random-beer', (req, res) => {
-  res.render('random-beer');
+  punkAPI
+    .getRandom()
+    .then(responseFromAPI => {
+      let randomBeer = responseFromAPI;
+      res.render('random-beer', { randomBeer });
+      // your magic happens here
+      //console.log(responseFromAPI);
+    })
+    .catch(error => console.log(error));
 });
 app.listen(3000, () => console.log('🏃‍ on port 3000'));
